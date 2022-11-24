@@ -22,5 +22,12 @@ namespace eAgenda.Webapi.ViewModels.ModuloContato
 
         [Required(ErrorMessage = "O campo '{0}' é obrigatório")]
         public string Cargo { get; set; }
+
+        [Required(ErrorMessage = "O campo '{0}' é obrigatório")]
+        public string TituloFoto { get; set; }
+
+
+        [Required(ErrorMessage = "O campo '{0}' é obrigatório")]
+        public string ConteudoFoto { get; set; }
     }
 }

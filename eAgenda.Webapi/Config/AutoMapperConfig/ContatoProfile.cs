@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eAgenda.Dominio.ModuloContato;
 using eAgenda.Webapi.ViewModels.ModuloContato;
+using System;
 
 namespace eAgenda.Webapi.Config.AutoMapperConfig
 {
@@ -10,6 +11,8 @@ namespace eAgenda.Webapi.Config.AutoMapperConfig
         {
             CreateMap<FormsContatoViewModel, Contato>()
                 .ForMember(destino => destino.Id, opt => opt.Ignore())
+                .ForMember(destino => destino.TituloFoto, opt => opt.MapFrom(origem => origem.TituloFoto + "_" + Guid.NewGuid() + ".jpg"))
+                .ForMember(destino => destino.ConteudoFoto, opt => opt.MapFrom( origem => Convert.FromBase64String(origem.ConteudoFoto)))
                 .ForMember(destino => destino.UsuarioId, opt => opt.MapFrom<UsuarioResolver>());
 
             CreateMap<Contato, ListarContatoViewModel>();

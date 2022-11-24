@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace eAgenda.Webapi.Controllers
 {
@@ -77,13 +78,16 @@ namespace eAgenda.Webapi.Controllers
 
         [HttpPost]
         public ActionResult<FormsContatoViewModel> Inserir(FormsContatoViewModel contatoVM)
-        {
+        {           
             var contato = mapeadorContatos.Map<Contato>(contatoVM);
 
             var contatoResult = servicoContato.Inserir(contato);
 
             if (contatoResult.IsFailed)
                 return InternalError(contatoResult);
+
+            //var nomeArquivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/fotos",  contato.TituloFoto);
+            //System.IO.File.WriteAllBytes(nomeArquivo, contato.ConteudoFoto);
 
             return Ok(new
             {
@@ -127,5 +131,7 @@ namespace eAgenda.Webapi.Controllers
 
             return NoContent();
         }
+
+       
     }
 }

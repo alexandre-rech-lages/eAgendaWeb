@@ -26,6 +26,9 @@ namespace eAgenda.Dominio.ModuloContato
         public string Empresa { get; set; }
         public string Cargo { get; set; }
 
+        public string TituloFoto { get; set; }
+        public byte[] ConteudoFoto { get; set; }
+
         public List<Compromisso> Compromissos { get; set; }
 
         public override void Atualizar(Contato registro)
